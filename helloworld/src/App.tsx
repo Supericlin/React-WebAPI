@@ -2,6 +2,7 @@
 //import reactLogo from './assets/react.svg'
 //import viteLogo from '/vite.svg'
 //import './App.css'
+import './App2.css'
 import { Card, Button, DatePicker, DatePickerProps } from 'antd';
 import Hello from './components/hello';
 import Goodbye from './components/goodbye';
@@ -21,17 +22,14 @@ function App() {
     <>
     <Hello name="Web API Dev" />
     <CardCol />
-      <div>
-        <Card title="Default card" style={{ width: 300 }}>
+      <div className="btn-wrapper">
+        {/* <Card title="Default card" style={{ width: 300 }}>
           <p>Card content</p>
           <p>Card content</p>
           <p>Card content 123</p>
-        </Card>
-
-        <br/>
-
-        <Button type="primary" onClick={onClick}>Button</Button>
-        <Button type="primary" danger>Button</Button>
+        </Card> */}
+        <Button className="btn" type="primary" onClick={onClick}>Button</Button>
+        <Button className="btn" type="primary" danger>Button</Button>
 
         <br/>
         <DatePicker onChange={onChange} />
