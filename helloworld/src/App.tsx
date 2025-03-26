@@ -1,45 +1,44 @@
-//import { useState } from 'react'
-//import reactLogo from './assets/react.svg'
-//import viteLogo from '/vite.svg'
-//import './App.css'
-import { Card, Button, DatePicker, DatePickerProps } from 'antd';
-import Hello from './components/hello';
-import Goodbye from './components/goodbye';
-import CardCol from './components/CardCol';
+import { Layout, Space } from 'antd';
+import React from 'react';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
+import Home from './components/home'
+import Dashboard from './components/dashboard'
+import About from './components/about'
+import Article from './components/articles'
+import DetailArticle from './components/detailArticle'
 
-function App() {
-  //const [count, setCount] = useState(0)
-  let counter = 0
-  const onChange: DatePickerProps['onChange'] = (date, dateString) => {
-    console.log(date, dateString);
-  };
-  const onClick = (event: any) => {
-    console.log(counter++)
-  }
-
+const App = () => {
   return (
     <>
-    <Hello name="Web API Dev" />
-    <CardCol />
-      <div>
-        <Card title="Default card" style={{ width: 300 }}>
-          <p>Card content</p>
-          <p>Card content</p>
-          <p>Card content 123</p>
-        </Card>
+      <BrowserRouter>
+        <Layout.Header style={{ display: 'flex'}}>
+          <nav>
+            <Space>
+              <Link to='/'>Home</Link>
+              <Link to='/about'>About</Link>
+              <Link to='/dashboard'>Dashboard</Link>
+            </Space>
+          </nav>
+        </Layout.Header>
 
-        <br/>
-
-        <Button type="primary" onClick={onClick}>Button</Button>
-        <Button type="primary" danger>Button</Button>
-
-        <br/>
-        <DatePicker onChange={onChange} />
-      </div>
+        <Layout.Content style={{ padding: '0 40px'}}>
           
-    <Goodbye name="Web API Dev" />
+          <div style={{minHeight: 200}}>
+          <Routes>
+              <Route index element = { <Home />} />
+              <Route path="/about" element = { <About />} />
+              <Route path="/dashboard" element = { <Dashboard />} /> 
+              <Route path="/detail/:aid" element = { <DetailArticle />} /> 
+          </Routes>
+          </div>
+        </Layout.Content>
+
+        <Layout.Footer>
+          <p>(c) 2025 Web API Development.</p>
+        </Layout.Footer>
+      </BrowserRouter>
     </>
-  )
+ );
 }
 
-export default App
+export default App;
