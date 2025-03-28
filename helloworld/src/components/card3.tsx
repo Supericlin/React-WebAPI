@@ -6,11 +6,11 @@ const { Meta } = Card;
 
 const App: React.FC = () => (
   <Card
-    style={{ width: 500 }}
+    style={{ width: 400 }}
     cover={
       <img
         alt="example"
-        src="https://static.vecteezy.com/system/resources/previews/047/370/754/large_2x/mechanical-marvel-in-monochrome-amber-ai-generated-photo.jpg"
+        src="https://as1.ftcdn.net/v2/jpg/04/22/95/64/1000_F_422956461_UJ1YdwOpxm2G7f8ADSDgR5LSzBwO4A5P.jpg"
       />
     }
     actions={[
