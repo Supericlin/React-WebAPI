@@ -1,11 +1,13 @@
-import { Layout, Space } from 'antd';
+import { Layout, Menu, Space } from 'antd';
 import React from 'react';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import Home from './components/home'
 import Dashboard from './components/dashboard'
 import About from './components/about'
 import Article from './components/articles'
-import DetailArticle from './components/detailArticle'
+//import DetailArticle from './components/detailArticle'
+import NewArticles from './components/newArticles'
+import ArticleDetail from './components/newArticlesDetail';
 
 const App = () => {
   return (
@@ -17,6 +19,7 @@ const App = () => {
               <Link to='/'>Home</Link>
               <Link to='/about'>About</Link>
               <Link to='/dashboard'>Dashboard</Link>
+              <Link to='/newArticles'>New Article</Link>
             </Space>
           </nav>
         </Layout.Header>
@@ -28,7 +31,8 @@ const App = () => {
               <Route index element = { <Home />} />
               <Route path="/about" element = { <About />} />
               <Route path="/dashboard" element = { <Dashboard />} /> 
-              <Route path="/detail/:aid" element = { <DetailArticle />} /> 
+              <Route path="/newArticles" element = { <NewArticles />} /> 
+              <Route path="/detail/:id" element={ <ArticleDetail />} />
           </Routes>
           </div>
         </Layout.Content>
