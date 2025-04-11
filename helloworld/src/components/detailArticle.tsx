@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios';
+import { api } from '../common/http-common';
 import articles from './data/articles.json';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from 'antd';

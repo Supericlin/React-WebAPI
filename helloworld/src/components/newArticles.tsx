@@ -1,5 +1,8 @@
 import React, { JSX } from 'react';
 import { Form, Input, Button } from 'antd';
+import axios from 'axios';
+//import { api } from '../common/http-common';
+//import { Buffer } from "buffer";
 
 const layout = {
   labelCol: { span: 8 },
@@ -11,13 +14,33 @@ const tailLayout = {
 };
 
 const NewArticles: React.FC = (): JSX.Element => {
-  const onFinish = (values: any) => {
-    console.log('Form values:', values);
-  };
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
-  };
+  const [showMessage, setshowMessage] = React.useState(false);
+  const [message, setMessage] = React.useState('');
+
+  const handleFormSubmit = (values: any) => {
+    const articleBody = {
+      authorid: 1,
+      title: values.title,
+      allText: values.context,
+    }
+
+    //call API
+    //const access_token = Buffer.from("${values.username}:${values.password}','utf8").toString('base64');
+    //console.log(articleBody, access_token);
+    axios.post('${api.uri}/articles', {articleBody},
+     {
+      auth: {
+        username: values.username,
+        password: values.password
+      }
+      }).then((res) => {
+        console.log(res.status);
+      }).catch((res) => {
+        setshowMessage(true);
+        setMessage(res.status);
+      })
+    }
 
   return (
     <div style={{ maxWidth: 600, margin: '50px auto', padding: '20px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)', borderRadius: '8px', background: '#fff' }}>
@@ -25,8 +48,8 @@ const NewArticles: React.FC = (): JSX.Element => {
       <Form
         {...layout}
         name="new-articles"
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
+        onFinish={(values)=>handleFormSubmit(values)}
+        //onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
         <Form.Item
@@ -67,8 +90,11 @@ const NewArticles: React.FC = (): JSX.Element => {
           </Button>
         </Form.Item>
       </Form>
+      { showMessage && <><p> {message} </p></> }
     </div>
   );
 };
+
+
 
 export default NewArticles;
